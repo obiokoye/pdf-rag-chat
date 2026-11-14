@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDF RAG Chat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <span class="logo">📚</span>
+        <div>
+          <h1>PDF RAG Chat</h1>
+          <p>Answers with page citations</p>
+        </div>
+      </div>
+
+      <section>
+        <h2>Your library</h2>
+        <ul class="docs" id="docs"><li class="muted">Loading…</li></ul>
+        <label class="upload" id="upload">
+          <input type="file" accept="application/pdf,.pdf" id="file" hidden>
+          <span class="upload-icon">＋</span>
+          <span><strong>Add a PDF</strong><br><small id="upload-hint">Text PDFs up to 20 MB</small></span>
+        </label>
+      </section>
+
+      <section>
+        <h2>Try asking</h2>
+        <div class="suggestions" id="suggestions">
+          <button>How many days of annual leave can I carry over?</button>
+          <button>and sick leave?</button>
+          <button>What uptime does NimbusHost promise, and what credits do I get?</button>
+          <button>What is the capital of France?</button>
+        </div>
+      </section>
+
+      <footer class="engine" id="engine"></footer>
+    </aside>
+
+    <main class="chat">
+      <header class="topbar">
+        <button class="menu" id="menu" aria-label="Show library">☰</button>
+        <div class="topbar-title"><strong>Chat</strong><span id="doc-count" class="muted"></span></div>
+        <button class="ghost" id="reset">New chat</button>
+      </header>
+      <div class="notice" id="notice" hidden></div>
+
+      <div class="messages" id="messages">
+        <div class="empty" id="empty">
+          <div class="empty-icon">🔎</div>
+          <h3>Ask anything about your PDFs</h3>
+          <p>Every answer cites the page it came from. Click a citation to read the source.</p>
+        </div>
+      </div>
+
+      <form class="composer" id="composer">
+        <input id="input" autocomplete="off" placeholder="Ask about your documents…" maxlength="2000">
+        <button type="submit" id="send" aria-label="Send">➤</button>
+      </form>
+    </main>
+
+    <aside class="source" id="source" hidden>
+      <header>
+        <strong>Source</strong>
+        <button class="ghost" id="close-source" aria-label="Close">✕</button>
+      </header>
+      <div id="source-body"></div>
+    </aside>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
